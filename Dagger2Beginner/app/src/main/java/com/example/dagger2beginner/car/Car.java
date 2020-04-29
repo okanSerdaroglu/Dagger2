@@ -1,4 +1,4 @@
-package com.example.dagger2beginner;
+package com.example.dagger2beginner.car;
 
 import android.util.Log;
 
@@ -15,7 +15,7 @@ public class Car {
     @Inject Engine engine; // Field injection
 
     @Inject
-    public Car( Wheels wheels) { // constructor injection
+    public Car(Wheels wheels) { // constructor injection
         this.wheels = wheels;
     }
 
@@ -24,6 +24,7 @@ public class Car {
     }
 
     public void drive(){
+        engine.start();
         Log.d(TAG,"driving...");
     }
 }

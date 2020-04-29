@@ -1,4 +1,4 @@
-package com.example.dagger2beginner;
+package com.example.dagger2beginner.car;
 
 public class Wheels {
 

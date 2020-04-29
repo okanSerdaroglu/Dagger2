@@ -1,4 +1,8 @@
-package com.example.dagger2beginner;
+package com.example.dagger2beginner.dagger;
+
+import com.example.dagger2beginner.car.Rims;
+import com.example.dagger2beginner.car.Tires;
+import com.example.dagger2beginner.car.Wheels;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +23,7 @@ public class WheelsModule {
     }
 
     @Provides
-    static Wheels provideWheels(Rims rims,Tires tires){
+    static Wheels provideWheels(Rims rims, Tires tires){
         return new Wheels(rims,tires);
     }
 }

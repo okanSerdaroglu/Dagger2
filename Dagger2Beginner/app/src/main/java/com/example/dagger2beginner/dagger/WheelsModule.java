@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class WheelsModule {
+abstract class WheelsModule {
 
     @Provides
     static Rims provideRims(){

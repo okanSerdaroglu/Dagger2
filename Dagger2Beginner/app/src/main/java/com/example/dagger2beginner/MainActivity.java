@@ -21,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component = ((ExampleApp) getApplication()).
-                getAppComponent().getActivityComponentBuilder().
-                horsePower(150).engineCapacity(1333).build();
+        CarComponent component = ((ExampleApp) getApplication())
+                .getAppComponent()
+                .getActivityComponentFactory()
+                .create(147, 2222);
         component.inject(this);
 
         // compare addresses in logcat

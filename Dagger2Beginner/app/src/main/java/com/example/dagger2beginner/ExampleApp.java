@@ -13,6 +13,6 @@ public class ExampleApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        appComponent = DaggerAppComponent.create();
+        appComponent = DaggerAppComponent.factory().create(new DriverModule("okaN"));
     }
 }

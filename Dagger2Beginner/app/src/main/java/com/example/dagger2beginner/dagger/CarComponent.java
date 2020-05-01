@@ -1,16 +1,18 @@
 package com.example.dagger2beginner.dagger;
 
+import com.example.dagger2beginner.AppComponent;
+import com.example.dagger2beginner.PerActivity;
 import com.example.dagger2beginner.car.Car;
 import com.example.dagger2beginner.MainActivity;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 
-@Singleton
-@Component(modules = {WheelsModule.class, PetrolEngineModule.class})
+@PerActivity
+@Component(dependencies = AppComponent.class,
+        modules = {WheelsModule.class, PetrolEngineModule.class})
 public interface CarComponent {
 
     Car getCar();
@@ -25,6 +27,8 @@ public interface CarComponent {
 
         @BindsInstance
         Builder engineCapacity(@Named("engine capacity") int engineCapacity);
+
+        Builder appComponent(AppComponent appComponent);
 
         CarComponent build();
     }

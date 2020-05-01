@@ -2,8 +2,11 @@ package com.example.dagger2beginner.car;
 
 import android.util.Log;
 
+import com.example.dagger2beginner.PerActivity;
+
 import javax.inject.Inject;
 
+@PerActivity
 public class Car {
 
     /** the order of usage is constructor, field, method */

@@ -12,14 +12,14 @@ import dagger.Component;
 import dagger.Subcomponent;
 
 @PerActivity
-@Subcomponent(modules = {WheelsModule.class, DieselEngineModule.class})
+@Subcomponent(modules = {WheelsModule.class, PetrolEngineModule.class})
 public interface CarComponent {
 
     Car getCar();
 
     void inject(MainActivity mainActivity);
 
-    /*@Component.Builder
+    @Subcomponent.Builder
     interface Builder {
 
         @BindsInstance
@@ -28,9 +28,7 @@ public interface CarComponent {
         @BindsInstance
         Builder engineCapacity(@Named("engine capacity") int engineCapacity);
 
-        Builder appComponent(AppComponent appComponent);
-
         CarComponent build();
-    }*/
+    }
 
 }

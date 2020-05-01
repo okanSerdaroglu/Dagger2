@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     // fields should be public for field injection
     @Inject
-    Car car;
+    Car car1, car2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
                 engineCapacity(1400).
                 build();
         component.inject(this);
-        car.drive();
+
+        // compare addresses in logcat
+        car1.drive();
+        car2.drive();
     }
 }

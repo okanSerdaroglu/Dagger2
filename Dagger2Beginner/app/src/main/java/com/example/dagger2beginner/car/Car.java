@@ -11,12 +11,14 @@ public class Car {
     private static final String TAG = "Car";
 
     private Wheels wheels;
+    private Driver driver;
 
     @Inject Engine engine; // Field injection
 
     @Inject
-    public Car(Wheels wheels) { // constructor injection
+    public Car(Wheels wheels,Driver driver) { // constructor injection
         this.wheels = wheels;
+        this.driver = driver;
     }
 
     public void enableRemote (Remote remote){ // method injection
@@ -25,6 +27,6 @@ public class Car {
 
     public void drive(){
         engine.start();
-        Log.d(TAG,"driving...");
+        Log.d(TAG,"driving..." + driver + "working to car :" + this);
     }
 }

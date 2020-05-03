@@ -56,8 +56,17 @@ dependencies {
     def lifecycle_version = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
+    // Retrofit
     def retrofitVersion = "2.5.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // RxJava
+    def rxJavaVersion = "2.1.1"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    // Rx-Retrofit Call Adapter
+    def rxCallAdapterVersion = "2.5.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxCallAdapterVersion"
 
 }

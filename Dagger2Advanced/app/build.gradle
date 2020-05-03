@@ -69,4 +69,8 @@ dependencies {
     def rxCallAdapterVersion = "2.5.0"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxCallAdapterVersion"
 
+    // Reactive Streams (convert Observable to LiveData)
+    def reactiveStreamsVersion = "1.1.1"
+    implementation "android.arch.lifecycle:reactivestreams:$reactiveStreamsVersion"
+
 }

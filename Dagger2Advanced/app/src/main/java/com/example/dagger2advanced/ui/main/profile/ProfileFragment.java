@@ -5,13 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dagger2advanced.R;
+import com.example.dagger2advanced.models.User;
+import com.example.dagger2advanced.ui.auth.AuthResource;
 import com.example.dagger2advanced.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -26,13 +29,52 @@ public class ProfileFragment extends DaggerFragment {
     @Inject
     ViewModelProviderFactory providerFactory;
 
+    private TextView email;
+    private TextView userName;
+    private TextView website;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater
             , @Nullable ViewGroup container
             , @Nullable Bundle savedInstanceState) {
-        Toast.makeText(getActivity(), "Profile Fragment", Toast.LENGTH_LONG).show();
+
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    private void subscribeObservers() {
+        profileViewModel.getAuthenticatedUser().removeObservers(getViewLifecycleOwner());
+        profileViewModel.getAuthenticatedUser().observe(getViewLifecycleOwner()
+                , new Observer<AuthResource<User>>() {
+                    @Override
+                    public void onChanged(AuthResource<User> userAuthResource) {
+                        if (userAuthResource != null) {
+                            switch (userAuthResource.status) {
+                                case AUTHENTICATED: {
+                                    setUserDetails(userAuthResource.data);
+                                    break;
+                                }
+                                case ERROR: {
+                                    setErrorDetails(userAuthResource.message);
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                });
+    }
+
+    private void setErrorDetails(String message) {
+        email.setText(message);
+        userName.setText("error");
+        website.setText("error");
+    }
+
+    private void setUserDetails(User data) {
+        email.setText(data.getEmail());
+        userName.setText(data.getUsername());
+        website.setText(data.getWebsite());
     }
 
     @Override
@@ -40,5 +82,9 @@ public class ProfileFragment extends DaggerFragment {
         Log.d(TAG, "onViewCreated: Profile fragment created...");
         profileViewModel = new ViewModelProvider(this, providerFactory)
                 .get(ProfileViewModel.class);
+        email = view.findViewById(R.id.email);
+        userName = view.findViewById(R.id.username);
+        website = view.findViewById(R.id.website);
+        subscribeObservers();
     }
 }

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.example.dagger2advanced.BaseActivity;
 import com.example.dagger2advanced.R;
+import com.example.dagger2advanced.ui.main.profile.ProfileFragment;
 
 
 public class MainActivity extends BaseActivity {
@@ -20,12 +21,19 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        testFragment();
+    }
+
+    private void testFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new ProfileFragment()).commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu,menu);
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 

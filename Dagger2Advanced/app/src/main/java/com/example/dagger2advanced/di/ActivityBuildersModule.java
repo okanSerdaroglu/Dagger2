@@ -14,12 +14,14 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuildersModule {
 
+    // Auth Component
     @ContributesAndroidInjector(
             modules = {AuthViewModelsModule.class
                     , AuthModule.class}
     )
     abstract AuthActivity contributeAuthActivity();
 
+    // Main Component
     @ContributesAndroidInjector(
             modules = {MainFragmentBuildersModule.class
                     , MainViewModelsModule.class

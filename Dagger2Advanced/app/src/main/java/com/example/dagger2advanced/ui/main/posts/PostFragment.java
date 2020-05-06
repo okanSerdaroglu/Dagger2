@@ -1,18 +1,23 @@
 package com.example.dagger2advanced.ui.main.posts;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dagger2advanced.R;
+import com.example.dagger2advanced.models.Post;
+import com.example.dagger2advanced.ui.main.Resource;
 import com.example.dagger2advanced.viewmodels.ViewModelProviderFactory;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,4 +46,17 @@ public class PostFragment extends DaggerFragment {
         postViewModel = new ViewModelProvider(this, viewModelProviderFactory)
                 .get(PostViewModel.class);
     }
+
+    private void subscribeObservers() {
+        postViewModel.observePosts().removeObservers(getViewLifecycleOwner());
+        postViewModel.observePosts().observe(getViewLifecycleOwner(), new Observer<Resource<List<Post>>>() {
+            @Override
+            public void onChanged(Resource<List<Post>> listResource) {
+                if (listResource != null) {
+                    Log.d(TAG, "onChanged: " + listResource.data);
+                }
+            }
+        });
+    }
+
 }

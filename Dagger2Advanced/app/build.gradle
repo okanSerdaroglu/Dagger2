@@ -73,4 +73,10 @@ dependencies {
     def reactiveStreamsVersion = "1.1.1"
     implementation "android.arch.lifecycle:reactivestreams:$reactiveStreamsVersion"
 
+    // architecture comp. navigation
+    def nav_version = "2.3.0-alpha06"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation "androidx.navigation:navigation-runtime:$nav_version"
+
 }

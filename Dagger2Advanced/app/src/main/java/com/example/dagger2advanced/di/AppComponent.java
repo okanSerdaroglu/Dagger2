@@ -12,6 +12,11 @@ import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
+/**
+ * There is a clint server relationship between AppComponent and
+ * BaseApplication. BaseApplication is a client and AppComponent is a server
+ */
+
 @Singleton
 @Component(
         modules = {

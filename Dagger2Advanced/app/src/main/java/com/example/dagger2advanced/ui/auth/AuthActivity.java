@@ -21,6 +21,7 @@ import com.example.dagger2advanced.ui.main.MainActivity;
 import com.example.dagger2advanced.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -41,6 +42,14 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     @Inject
     RequestManager requestManager;
 
+    @Inject
+    @Named("auth_module")
+    User userNumber1;
+
+    @Inject
+    @Named("app_module")
+    User userNumber2;
+
     private ProgressBar progressBar;
 
     @Override
@@ -58,6 +67,10 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
 
         setLogo();
         subscribeObservers();
+
+        Log.d(TAG, "onCreate: " + userNumber1);
+        Log.d(TAG, "onCreate: " + userNumber2);
+
     }
 
     private void setLogo() {
@@ -90,7 +103,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         }
     }
 
-    private void onLoginSuccess(){
+    private void onLoginSuccess() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

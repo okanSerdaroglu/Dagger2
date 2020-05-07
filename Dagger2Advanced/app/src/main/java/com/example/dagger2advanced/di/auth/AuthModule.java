@@ -1,6 +1,10 @@
 package com.example.dagger2advanced.di.auth;
 
+import com.example.dagger2advanced.models.User;
 import com.example.dagger2advanced.network.auth.AuthAPI;
+
+
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,6 +17,13 @@ public class AuthModule {
     @Provides
     static AuthAPI provideAuthAPI (Retrofit retrofit){
         return retrofit.create(AuthAPI.class);
+    }
+
+    @AuthScope
+    @Provides
+    @Named("auth_module")
+    static User someUser() {
+        return new User();
     }
 
 }
